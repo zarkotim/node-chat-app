@@ -51,7 +51,7 @@ const publicPath = path.join(__dirname , "../public")
 const port = process.env.port || 3000;
 app.use(express.static(publicPath))
 
-server.listen(process.env.PORT, process.env.IP, function(){
+server.listen(3000, process.env.IP, function(){
    console.log("Server Has Started on the port ",port);
 });
 
