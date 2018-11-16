@@ -16,12 +16,13 @@ io.on("connection", (socket)=>{
     //socket.broadcoast.emit from admin text New user joined;
    socket.broadcast.emit("newMessage", generateMessage("Admin", "New USER joined!"))
     
-    socket.on("createMessage", (message)=>{
+    socket.on("createMessage", (message, callback)=>{
       
      console.log(message)
       
-    //  io.emit("newMessage", {
-     
+      io.emit("newMessage", generateMessage(message.from, message.text))
+      callback("This is from server");
+     console.log("createMessage", message)
     //       from: message.from,
       
     //      text: message.text,
