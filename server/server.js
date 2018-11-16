@@ -7,20 +7,35 @@ const app = express();
 var server = http.createServer(app)
 var io = socketIO(server);
 
-
+const {generateMessage}= require("./utils/message")
 io.on("connection", (socket)=>{
     console.log("New user connected! App.js")
+    // socket.emit from Admin text WElcome to the chat app;
+    socket.emit("newMessage", generateMessage("Admin", "Welcome to the CHAT APP!!!"));
     
-   
+    //socket.broadcoast.emit from admin text New user joined;
+   socket.broadcast.emit("newMessage", generateMessage("Admin", "New USER joined!"))
     
     socket.on("createMessage", (message)=>{
-        console.log(message)
-        io.emit("newMessage", {
-            from: message.from,
-            text: message.text,
-            createdAt: new Date().getTime()
-        })
-    })
+      
+     console.log(message)
+      
+    //  io.emit("newMessage", {
+     
+    //       from: message.from,
+      
+    //      text: message.text,
+     
+    //       createdAt: new Date().getTime()
+     
+    //   })
+   // socket.broadcoast.emit("newMessage", {
+     //   from: message.from,
+     //   text: message.text,
+     //   createdAt: new Date().getTime()
+   // })
+   
+     })
     
     
     
