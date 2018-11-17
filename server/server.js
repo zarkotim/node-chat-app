@@ -7,7 +7,7 @@ const app = express();
 var server = http.createServer(app)
 var io = socketIO(server);
 
-const {generateMessage}= require("./utils/message")
+const {generateMessage,generateLocationMessage}= require("./utils/message")
 io.on("connection", (socket)=>{
     console.log("New user connected! App.js")
     // socket.emit from Admin text WElcome to the chat app;
@@ -27,7 +27,7 @@ io.on("connection", (socket)=>{
      })
     
     socket.on("createLocationMessage", (coords)=>{
-      io.emit("newMessage", generateMessage("Admin", coords.latitude +" "+ coords.longitude))
+      io.emit("newLocationMessage", generateLocationMessage("Admin", coords.latitude, coords.longitude))
     })
     
     
