@@ -1,6 +1,6 @@
    var socket= io();
 
-
+// a function to scroll down when there is a new message
    function scrollToBottom(){
     // Selectors
     var messages = $("#messages");
